@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import App from './App'
 import store from './store'
 import './common/stylus/frame.styl'
+import './mock'
 
 const AppProvider = (
   <Provider store={store}>
