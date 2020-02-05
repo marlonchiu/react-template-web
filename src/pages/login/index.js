@@ -1,5 +1,7 @@
 import React from 'react'
 import Header from '../../components/header'
+import { connect } from 'react-redux'
+import * as actionCreators from './store/actionCreators'
 import './login.styl'
 
 function Login (props) {
@@ -11,9 +13,24 @@ function Login (props) {
     <div className='P-login'>
       <Header />
       <h1>Login page</h1>
+      <p>login: myData = {props.myData}</p>
+      <button onClick={() => { props.getData('123456') }}>更改login的myData</button>
       <button onClick={gotoHome}>跳转Home页</button>
     </div>
   )
 }
 
-export default Login
+// 把 store中的数据映射到组件的 props
+const mapStateToProps = (state) => ({
+  myData: state.getIn(['login', 'myData'])
+})
+
+// 把 store的 Dispatch 映射到组件的 props
+const mapDispatchToProps = (dispatch) => ({
+  getData (data) {
+    const action = actionCreators.getData(data)
+    dispatch(action)
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
