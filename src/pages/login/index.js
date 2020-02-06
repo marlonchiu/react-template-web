@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../../components/header'
 import { connect } from 'react-redux'
 import * as actionCreators from './store/actionCreators'
+import { Button } from 'antd'
 import './login.styl'
 
 function Login (props) {
@@ -14,8 +15,10 @@ function Login (props) {
       <Header />
       <h1>Login page</h1>
       <p>login: myData = {props.myData}</p>
-      <button onClick={() => { props.getData('123456') }}>更改login的myData</button>
-      <button onClick={gotoHome}>跳转Home页</button>
+      <Button
+        type='primary'
+        onClick={() => { props.getData('123456') }}>更改login的myData</Button>
+      <Button onClick={gotoHome}>跳转Home页</Button>
     </div>
   )
 }
